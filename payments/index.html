@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b2354"><title>Billing & Payments | ARQWELL Network</title>
+<meta name="description" content="ARQWELL Network employer contracts, invoices, and optional secure Stripe payment.">
+<link rel="stylesheet" href="../agency-form.css">
+<style>
+.pay-wrap{max-width:920px;margin:0 auto;padding:0 20px 70px}.pay-cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:-35px;position:relative}
+.pay-card{background:white;border:1px solid #d9e4f5;border-radius:13px;padding:clamp(20px,3.5vw,38px);box-shadow:0 10px 30px #153c7c12}
+.pay-card h2{font-size:1.38rem;margin:3px 0 13px;color:#102b60}.pay-card p{color:#506784;font-size:.95rem}
+.pay-card a.cta,.pay-card button{display:inline-block;background:#125be9;color:white;border:0;border-radius:7px;padding:12px 16px;text-decoration:none;font-weight:750;cursor:pointer}
+.pay-card button:hover,.pay-card a.cta:hover{background:#0649bd}
+.note-pill{display:inline-block;color:#0c4fb7;background:#e9f2ff;font-size:12px;padding:5px 11px;border-radius:30px;font-weight:750}
+.small-note{font-size:.82rem;line-height:1.5}.pay-status{color:#af243d;min-height:25px}
+@media(max-width:720px){.pay-cards{grid-template-columns:1fr}}
+</style></head><body>
+<header class="app-bar"><a href="../" class="logo">ARQWELL<span>AGENCY / AEC NETWORK</span></a><a class="back" href="../hire/">← Employer applications</a></header>
+<section class="hero"><div class="hero-inner"><div class="eyebrow">ARQWELL NETWORK / EMPLOYER BILLING</div>
+<h1>Contracts first.<br>Simple payments after.</h1>
+<p>Hiring inquiries are free. Recruiting and training fees are quoted and agreed in writing before payment is requested.</p></div></section>
+<main class="pay-wrap"><div class="pay-cards">
+<section class="pay-card"><span class="note-pill">PREFERRED</span><h2>Contract & invoice by email</h2>
+<p>We confirm the scope, send a service agreement for review and signature, then provide an invoice under the agreed terms. No payment is required to submit a hiring inquiry.</p>
+<a class="cta" href="mailto:partnerships@arqwell.org?subject=ARQWELL%20Network%20invoice%20or%20contract%20request">Request contract or invoice →</a>
+<p class="small-note">Please include your company name and a reference number if you have already submitted an inquiry.</p></section>
+<section class="pay-card"><span class="note-pill">OPTIONAL</span><h2>Secure Stripe invoice payment</h2>
+<p>After signing a contract, ARQWELL may email a hosted Stripe invoice or payment link. Payments are completed on Stripe's secure website, not this page.</p>
+<label for="stripe-link">Have a Stripe invoice or payment link?</label>
+<input id="stripe-link" type="text" inputmode="url" placeholder="invoice.stripe.com/i/... or pay.stripe.com/...">
+<p class="small-note">Paste the exact link from your ARQWELL invoice email; it can start with <b>invoice.stripe.com</b>, <b>pay.stripe.com</b>, or <b>checkout.stripe.com</b>.</p>
+<button id="open-stripe" type="button">Open secure Stripe invoice ↗</button><p id="payment-message" role="status" class="pay-status"></p></section>
+</div><p class="small-note" style="margin:24px 0">ARQWELL does not charge applicants to look for work. Employer service fees, if any, are governed by the written agreement. Never send payment information through an application form or ordinary email.</p></main>
+<footer class="footer">© ARQWELL · <a href="../">Agency services</a> · <a href="../hire/">Employer intake</a></footer>
+<script>
+document.getElementById('open-stripe').addEventListener('click', () => {
+  const input=document.getElementById('stripe-link'),status=document.getElementById('payment-message');
+  const raw=input.value.trim();
+  if(!raw){status.textContent='Enter the Stripe invoice link you received by email.';return;}
+  const value=/^https?:\/\//i.test(raw)?raw:'https://'+raw;
+  try {
+    const link=new URL(value);
+    if(link.protocol!=='https:' || !['invoice.stripe.com','pay.stripe.com','checkout.stripe.com'].includes(link.hostname) || link.username || link.password) {
+      status.textContent='For safety, only open an official Stripe invoice or payment link.'; return;
+    }
+    status.textContent='Opening Stripe in a new tab…';
+    window.open(link.href,'_blank','noopener,noreferrer');
+  } catch {status.textContent='Enter a valid Stripe invoice link.';}
+});
+</script></body></html>
