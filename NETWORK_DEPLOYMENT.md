@@ -1,30 +1,29 @@
-# ARQWELL Network / arqwell.net — deployment handoff
+# ARQWELL Network — Agency website deployment
 
-The ARQWELL Agency website package contains the electric-blue homepage and three public application pages:
-- `/apply/` — AEC candidate interest
-- `/hire/` — employer recruiting requests
-- `/training/` — training and onboarding interest (under construction)
+## Current status (November 1, 2026)
+The full electric-blue ARQWELL Agency site has been committed and extracted into the `network` branch of `imanisim/arqibox`. GitHub Actions run `41367866007` completed successfully. Verified files include:
+- `index.html`, `styles.css`, and `app.js`
+- `/apply/index.html` — job seekers
+- `/hire/index.html` — employers
+- `/training/index.html` — focused training inquiries (under construction)
+- `agency-form.css`, `agency-forms.js`, `intake-config.js`
+- `supabase/agency_leads.sql` and `supabase/functions/agency-intake/index.ts`
+- `CNAME` containing `arqwell.net`
 
-**Deployment status:** This is a staging branch only. The complete website is provided as `ARQWELL_network_site_publish.zip` in the ChatGPT handoff; this branch does not yet contain the website source. No live DNS or GitHub Pages settings have been changed.
+**Domain is NOT connected yet:** publishing settings and DNS records require changes in the GitHub Pages settings and at the DNS provider. Existing `arqwell.org` repositories were not modified.
 
-## Recommended destination
+## Make the website live at arqwell.net
 
-Create a dedicated public repository at https://github.com/new named `network`, under account `imanisim`. Unzip the package and upload **all contents at the repository root**, retaining the `apply/`, `hire/`, `training/`, `supabase/` paths. Do not upload only the ZIP and expect GitHub Pages to serve it.
+1. Open https://github.com/imanisim/arqibox/settings/pages
+2. Under Build and deployment, set Source = **Deploy from a branch**, Branch = **network**, Folder = **/(root)**, and save.
+3. Under Custom domain, enter `arqwell.net`, save and verify the domain if prompted. The root CNAME is already present.
+4. Then at your domain's DNS provider add apex `@` A records: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`. If you use `www`, add a CNAME pointing to `imanisim.github.io`. Do not delete email-related MX and TXT records. Avoid conflicting web records.
+5. Once DNS and the TLS certificate are active, enable **Enforce HTTPS** in GitHub Pages. Verify `https://arqwell.net/`, `/apply/`, `/hire/`, and `/training/`.
 
-In repository **Settings → Pages**, choose **Deploy from a branch**, `main`, `/(root)`, and custom domain `arqwell.net`. Keep the root `CNAME` file with exactly `arqwell.net`.
+Reference: https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site
 
-At the domain DNS provider, configure apex A records @ to:
-```
-185.199.108.153
-185.199.109.153
-185.199.110.153
-185.199.111.153
-```
-For www, CNAME `www` -> `imanisim.github.io`.
-Confirm there are no conflicting A or CNAME records, preserve MX/TXT records for email, and enable HTTPS after GitHub certificate provisioning. **Do not change DNS until the GitHub Pages custom domain is correctly configured.**
+## Form submission status
+The three forms currently validate fields but do not transmit or save submissions; `intake-config.js` has blank endpoint and Turnstile public-site-key settings by design. Before accepting job-seeker information, configure the server-side Supabase Edge Function, restricted database table, Cloudflare Turnstile secret, and public endpoint, and test all three submissions. See `README_FORMS.md` for exact instructions.
 
-Documentation: https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site
-
-## Intake safety
-
-The forms are **preview-only** until the private Supabase intake function, database schema, and Cloudflare Turnstile verification are configured. Do not advertise the forms as accepting applicants until end-to-end tested. Do not store applicant records in GitHub or in a public database.
+## Standalone repository option
+A separate repository `imanisim/network` can be created manually at https://github.com/new. If you prefer that location, move the verified source files from this branch into its main branch and configure GitHub Pages and the domain there instead. Do not configure `arqwell.net` on both repositories at the same time.
