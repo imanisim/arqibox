@@ -57,6 +57,17 @@ form.addEventListener('submit', async event => {
   websiteFields.forEach(normalizeWebsite);
   if(!form.reportValidity()) return;
   const data=new FormData(form);
+  const rolePdf = type==='employer' ? form.querySelector('input[name="role_pdf"]')?.files?.[0] : null;
+  if(rolePdf && (rolePdf.size>5*1024*1024 || !/\.pdf$/i.test(rolePdf.name) || rolePdf.type!=='application/pdf')) {
+    show('Please choose a PDF file no larger than 5 MB.','error');
+    return;
+  }
+  if(type==='employer' && !String(data.get('message')||'').trim() &&
+     !String(data.get('job_post_url')||'').trim() && !rolePdf) {
+    show('Provide a job posting link, a PDF job description, or written role details.','error');
+    form.querySelector('[name="job_post_url"]')?.focus();
+    return;
+  }
   const selected = field => data.getAll(field).map(String);
   const payload={
     type, full_name:String(data.get('full_name')||'').trim(),
@@ -72,6 +83,8 @@ form.addEventListener('submit', async event => {
     skills:String(data.get('skills')||'').trim(),
     portfolio_url:String(data.get('portfolio_url')||'').trim(),
     company_website:String(data.get('company_website')||'').trim(),
+    job_post_url:String(data.get('job_post_url')||'').trim(),
+    payment_preference:String(data.get('payment_preference')||'contract_invoice'),
     experience:String(data.get('experience')||''),
     training_interest:type==='training' || data.has('training_interest'),
     training_budget:String(data.get('training_budget')||''),
@@ -94,7 +107,16 @@ form.addEventListener('submit', async event => {
   if(!payload.turnstile_token){show('Complete the verification challenge before submitting.','error');return;}
   btn.disabled=true;btn.textContent='Submitting…';status.textContent='Sending securely…';
   try{
-    const response=await fetch(cfg.endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    let request;
+    if(rolePdf) {
+      const body=new FormData();
+      body.append('payload',JSON.stringify(payload));
+      body.append('role_pdf',rolePdf,rolePdf.name);
+      request={method:'POST',body};
+    } else {
+      request={method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)};
+    }
+    const response=await fetch(cfg.endpoint,request);
     let result={};try{result=await response.json();}catch{}
     if(!response.ok) throw new Error(result.error||'Submission was not accepted. Please try again.');
     form.reset();show('Application received. Your reference number is '+result.reference+'. ARQWELL may contact you if there is a suitable next step.','success');
