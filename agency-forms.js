@@ -28,8 +28,33 @@ if (isLive) {
   show('Preview mode: applications can be completed here, but will not be transmitted or stored until the secure form endpoint is configured.');
   status.textContent='Preview only — no information is sent';
 }
+// Let visitors enter www.example.com or example.com without typing https://.
+// Normalize before browser validation and before constructing the submission payload.
+const websiteFields = Array.from(form.querySelectorAll('[data-website-url]'));
+const normalizeWebsite = field => {
+  let value = field.value.trim();
+  if (!value) {
+    field.value = '';
+    field.setCustomValidity('');
+    return;
+  }
+  if (!/^[a-z][a-z0-9+.-]*:\/\//i.test(value)) value = 'https://' + value;
+  let valid = false;
+  try {
+    const url = new URL(value);
+    valid = (url.protocol === 'https:' || url.protocol === 'http:') &&
+      url.hostname.includes('.') && !url.username && !url.password && !/\s/.test(value);
+  } catch { /* malformed website address */ }
+  field.setCustomValidity(valid ? '' : 'Enter a website such as www.example.com or https://example.com.');
+  if (valid) field.value = value;
+};
+websiteFields.forEach(field => {
+  field.addEventListener('blur', () => normalizeWebsite(field));
+  field.addEventListener('input', () => field.setCustomValidity(''));
+});
 form.addEventListener('submit', async event => {
   event.preventDefault();
+  websiteFields.forEach(normalizeWebsite);
   if(!form.reportValidity()) return;
   const data=new FormData(form);
   const selected = field => data.getAll(field).map(String);
