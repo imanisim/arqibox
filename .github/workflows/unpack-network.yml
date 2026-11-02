@@ -1,0 +1,33 @@
+name: Unpack ARQWELL Network Website
+on:
+  push:
+    branches: [network]
+    paths:
+      - ARQWELL_network_site_publish.zip
+permissions:
+  contents: write
+jobs:
+  unpack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: network
+          persist-credentials: true
+      - name: Extract website package
+        run: |
+          test -f ARQWELL_network_site_publish.zip
+          unzip -oq ARQWELL_network_site_publish.zip -d .
+          test -f index.html
+          test -f apply/index.html
+          test -f hire/index.html
+          test -f training/index.html
+      - name: Commit unpacked website files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html styles.css app.js agency-form.css agency-forms.js intake-config.js apply hire training CNAME README_FORMS.md DEPLOY_ARQWELL_NET.md supabase
+          if ! git diff --cached --quiet; then
+            git commit -m "Unpack ARQWELL Network agency website"
+            git push origin HEAD:network
+          fi
