@@ -1,0 +1,40 @@
+name: Publish ARQWELL Network to GitHub Pages
+
+on:
+  push:
+    branches: [network]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "arqwell-network-pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout agency branch
+        uses: actions/checkout@v4
+      - name: Prepare public website only
+        run: |
+          mkdir -p _site
+          cp index.html styles.css app.js agency-form.css agency-forms.js intake-config.js CNAME _site/
+          cp -R apply hire training _site/
+          touch _site/.nojekyll
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+      - name: Publish website
+        id: deployment
+        uses: actions/deploy-pages@v4
