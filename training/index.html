@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b2354"><meta name="description" content="Join the ARQWELL focused AEC entry-level training and new-employee onboarding interest list.">
+  <title>Focused AEC Training Interest | ARQWELL Agency</title>
+  <link rel="stylesheet" href="../agency-form.css">
+  <script src="../intake-config.js" defer></script><script src="../agency-forms.js" defer></script>
+</head>
+<body data-type="training">
+<header class="app-bar"><a class="logo" href="../">ARQWELL<span>AGENCY / AEC NETWORK</span></a><a class="back" href="../">← Back to agency services</a></header>
+<section class="hero"><div class="hero-inner"><div class="eyebrow">AEC WORKFORCE DEVELOPMENT / EARLY INTEREST</div><h1>Train the talent<br>you just hired.</h1><p>Focused entry-level skill building, customized firm workflows, and new-employee onboarding. Our training page is under construction, but you can tell us what your organization would need.</p><div class="hero-tabs"><a href="../apply/">I'm looking for work</a><a href="../hire/">I'm hiring</a><a class="active" href="../training/">Training inquiry</a></div></div></section>
+<div class="wrap"><div class="form-shell"><main class="panel">
+  <div class="panel-top"><h2>Focused training interest form</h2><span class="pill">COMING SOON</span></div>
+  <p class="helper">This is a non-binding expression of interest, not enrollment or an active training purchase. Your budget helps us design focused programs that employers can realistically use.</p>
+  <div class="alert" id="form-message" role="status" aria-live="polite" hidden></div>
+  <form id="agency-form" novalidate>
+  <h3 class="section-title">01 / Organization and contact</h3>
+  <div class="fields">
+    <div class="field"><label for="organization">Company / organization <span class="required">*</span></label><input name="organization" id="organization" type="text" autocomplete="organization" required maxlength="160" placeholder="Architecture or engineering firm"></div>
+    <div class="field"><label for="full_name">Your name <span class="required">*</span></label><input name="full_name" id="full_name" type="text" autocomplete="name" required maxlength="160" placeholder="Contact person"></div>
+    <div class="field"><label for="email">Business email <span class="required">*</span></label><input name="email" id="email" type="email" autocomplete="email" required maxlength="160" placeholder="name@company.com"></div>
+    <div class="field"><label for="phone">Phone (optional)</label><input name="phone" id="phone" type="tel" autocomplete="tel" maxlength="40" placeholder="(555) 123-4567"></div>
+    <div class="field"><label for="location">Company city / state <span class="required">*</span></label><input name="location" id="location" type="text" required maxlength="160" placeholder="Aurora, CO"></div>
+    <div class="field"><label for="company_website">Website (optional)</label><input name="company_website" id="company_website" type="url" maxlength="300" placeholder="https://"></div>
+  </div>
+  <h3 class="section-title">02 / Training goals</h3>
+  <div class="fields">
+    <div class="field"><label for="discipline">Workforce discipline <span class="required">*</span></label><select name="discipline" id="discipline" required><option value="">Select an option</option><option>Architecture / interior design</option><option>Engineering</option><option>BIM / CAD / visualization</option><option>Construction / project delivery</option><option>Planning / GIS</option><option>Cross-disciplinary AEC team</option><option>Other</option></select></div>
+    <div class="field"><label for="role">Who would be trained? <span class="required">*</span></label><input name="role" id="role" type="text" required maxlength="160" placeholder="New CAD technicians, junior designers..."></div>
+    <div class="field"><label for="training_trainees">Number of employees <span class="required">*</span></label><select name="training_trainees" id="training_trainees" required><option value="">Select group size</option><option>1 employee</option><option>2–5 employees</option><option>6–10 employees</option><option>11–25 employees</option><option>26+ employees</option><option>Still evaluating</option></select></div>
+    <div class="field"><label for="availability">Desired start timeframe <span class="required">*</span></label><select name="availability" id="availability" required><option value="">Select timeframe</option><option>As soon as available</option><option>Within 30 days</option><option>1–3 months</option><option>3–6 months</option><option>Future / no date set</option></select></div>
+    <div class="field full"><label>Training priorities (select any)</label><div class="choices"><label class="choice"><input type="checkbox" name="training_topics" value="Revit / BIM"> Revit / BIM</label><label class="choice"><input type="checkbox" name="training_topics" value="AutoCAD / drafting"> AutoCAD / drafting</label><label class="choice"><input type="checkbox" name="training_topics" value="Bluebeam / QA"> Bluebeam / QA</label><label class="choice"><input type="checkbox" name="training_topics" value="Construction documentation"> Construction documentation</label><label class="choice"><input type="checkbox" name="training_topics" value="Firm standards / onboarding"> Firm standards / onboarding</label><label class="choice"><input type="checkbox" name="training_topics" value="Project coordination"> Project coordination</label><label class="choice"><input type="checkbox" name="training_topics" value="Rhino / 3D"> Rhino / 3D</label><label class="choice"><input type="checkbox" name="training_topics" value="Other"> Other</label></div></div>
+    <div class="field full"><label>Preferred delivery (select any)</label><div class="choices"><label class="choice"><input type="checkbox" name="training_delivery" value="Virtual live"> Virtual live</label><label class="choice"><input type="checkbox" name="training_delivery" value="On-site at firm"> On-site at firm</label><label class="choice"><input type="checkbox" name="training_delivery" value="Hybrid"> Hybrid</label><label class="choice"><input type="checkbox" name="training_delivery" value="Evenings"> Evenings</label><label class="choice"><input type="checkbox" name="training_delivery" value="Self-paced + mentor"> Self-paced + mentor</label></div></div>
+  </div>
+  <h3 class="section-title">03 / Training budget</h3><p class="helper">An estimate is sufficient. These amounts are for program planning, not a quote or commitment.</p>
+  <div class="fields">
+    <div class="field"><label for="training_budget">Budget range <span class="required">*</span></label><select name="training_budget" id="training_budget" required><option value="">Select a range</option><option>Under $500</option><option>$500–$1,500</option><option>$1,500–$3,000</option><option>$3,000–$7,500</option><option>$7,500–$15,000</option><option>$15,000+</option><option>Budget not set / need guidance</option></select></div>
+    <div class="field"><label for="training_budget_basis">What does that budget cover? <span class="required">*</span></label><select name="training_budget_basis" id="training_budget_basis" required><option value="">Select a basis</option><option>Per employee</option><option>Per group / cohort</option><option>Total training program</option><option>Not sure</option></select></div>
+    <div class="field full"><label for="message">What should employees be able to do after training? <span class="required">*</span></label><textarea name="message" id="message" maxlength="1800" required placeholder="Describe their entry-level skills, current gaps, preferred schedule, and what successful onboarding would look like."></textarea></div>
+  </div>
+  <div class="legal"><p>ARQWELL will use your information to evaluate program demand, understand training budgets, and contact you about potential focused training. The program and pricing have not been finalized. Don't share private employee details or sensitive data.</p><label><input type="checkbox" name="consent" required> I agree that ARQWELL may contact me about focused training and workforce onboarding. <span class="required">*</span></label></div>
+  <div class="hidden" aria-hidden="true"><label for="website_fax">Leave this field blank<input tabindex="-1" autocomplete="off" type="text" name="website_fax" id="website_fax"></label></div><div id="turnstile" class="hidden" aria-label="Spam protection verification"></div>
+  <div class="actions"><button class="submit" type="submit">Send training interest →</button><span class="status" id="status-text">Approx. 3 minutes · no obligation</span></div>
+  </form>
+</main><aside class="side"><h3>Training is being developed</h3><ol><li>Submit your team's priorities and estimated budget.</li><li>ARQWELL reviews employer demand and common training needs.</li><li>We may reach out to discuss a pilot, training scope, and proposed pricing.</li></ol><p class="note">Expressing interest does not reserve a seat or guarantee that a course will launch. Recruiting and staffing inquiries have separate forms.</p><a class="submit training-aside-link" href="../hire/">Need employees instead? →</a></aside></div></div>
+<footer class="footer">© ARQWELL · Focused training interest · <a href="../">Agency services</a></footer>
+</body></html>
