@@ -9,3 +9,39 @@
 @media(max-width:850px){.desktop-nav,.header-actions>.text-button,.header-actions>.btn{display:none}.mobile-menu-toggle{display:block;border:1px solid #aac8e9;background:transparent;font-size:23px;width:40px;height:40px}.mobile-menu:not([hidden]){display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--paper);border-bottom:1px solid #b7d1ea;padding:15px 30px 22px;box-shadow:0 15px 20px #10284917}.mobile-menu a,.mobile-menu button{border:0;border-bottom:1px solid #dbe8f6;padding:13px 0;text-align:left;background:transparent;font-weight:750;font-size:14px}.hero{grid-template-columns:1fr;gap:22px;padding-top:25px}.hero-copy{padding-top:32px}.hero h1{font-size:clamp(55px,8vw,78px)}.hero-note{margin-top:35px}.hero-visual{height:520px}.proof-inner{grid-template-columns:1fr 1fr;gap:0}.proof-inner>div:nth-child(2){border:0}.proof-inner>div:nth-child(1),.proof-inner>div:nth-child(2){border-bottom:1px solid #cedff3}.section-heading,.panel-intro,.process-layout,.network-layout,.faq-layout{grid-template-columns:1fr;gap:25px}.section-heading p,.panel-intro p{justify-self:start;max-width:560px}.process-steps{margin-top:14px}.process-layout{padding-block:70px}.network-layout{margin-top:35px}.bottom-cta-layout{align-items:stretch;flex-direction:column}.bottom-buttons{width:min(100%,370px)}.services,.network-section,.faq{padding-block:75px}}
 @media(max-width:620px){.wrap{width:calc(100% - 36px)}.site-header{height:73px;padding-inline:18px}.announcement{padding-inline:18px;letter-spacing:.08em;font-size:8px}.announce-right{display:none}.hero{padding-top:12px;padding-bottom:35px}.hero h1{font-size:clamp(47px,11vw,65px);margin-top:25px}.hero-lede{font-size:14px}.hero-ctas{flex-direction:column;align-items:stretch}.hero-ctas .btn{width:100%}.hero-visual{min-height:380px;height:440px}.visual-toplabel,.visual-footer{font-size:7px;left:12px;right:12px}.orbit-one{height:270px;width:270px}.orbit-two{width:480px;height:480px}.network-core{width:119px;height:119px;font-size:10px;gap:6px}.node{min-width:115px;padding:8px;font-size:7px;gap:5px}.node small{font-size:8px}.node-icon{width:25px;height:25px;font-size:13px}.node-a{top:24%;left:2%}.node-b{top:15%;right:2%}.node-c{right:2%;bottom:23%}.node-d{left:2%;bottom:17%}.proof-inner>div{font-size:10px;padding:12px 8px}.proof-inner>div:first-child{padding-left:8px}.section-topline{font-size:9px}.section-topline span:last-child{font-size:8px}.section-heading{margin:31px 0 26px}.section-heading h2,.network-copy h2,.faq h2{font-size:44px}.audience-switch{overflow-x:auto}.audience-switch button{font-size:12px;min-width:max-content;padding:16px 17px 16px 8px}.panel-intro{padding:27px 0 24px}.panel-intro h3{font-size:24px}.service-cards{grid-template-columns:1fr}.service-card{min-height:220px;padding:22px}.service-card h4{margin-top:18px}.service-footer{flex-direction:column;align-items:start}.process-intro h2{font-size:48px;margin-top:32px}.process-steps>div{grid-template-columns:40px 1fr 14px;gap:10px}.network-tiles{grid-template-columns:1fr}.network-tiles article{min-height:150px}.focus-inner>div{font-size:17px}.footer-main{grid-template-columns:1fr 1fr;gap:32px}.footer-main>div:first-child{grid-column:1/-1}.footer-bottom{flex-direction:column;font-size:8px}.dialog-inner{padding:24px 20px}.dialog-inner h2{font-size:32px}.form-grid{grid-template-columns:1fr;gap:14px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+
+
+/* ARQWELL Network — intentionally compact three-row funding ticker */
+.funding-band{background:#f3f8ff;border-top:1px solid #c7dcf7;border-bottom:1px solid #c7dcf7;padding:28px 0 18px}
+.funding-shell{max-width:1100px}
+.funding-top{display:flex;gap:20px;align-items:center;justify-content:space-between;margin-bottom:14px}
+.funding-kicker{font-size:10px;font-weight:850;letter-spacing:.18em;color:#1659bc}
+.funding-top h2{margin:5px 0 0;font-size:clamp(19px,2.3vw,27px);letter-spacing:-.035em;color:#092b68}
+.funding-counter{font-size:10px;font-weight:850;letter-spacing:.12em;vertical-align:middle;color:#3473be;margin-left:10px}
+.funding-library{color:#0e56cb;font-weight:800;font-size:13px;white-space:nowrap;text-decoration:none}
+.funding-library:hover,.funding-disclaimer a:hover{text-decoration:underline}
+.funding-rows{background:white;border:1px solid #bed5f2;border-radius:9px;overflow:hidden}
+.funding-row{display:grid;grid-template-columns:34px minmax(122px,180px) minmax(0,1fr) minmax(74px,145px);gap:12px;align-items:center;min-height:43px;padding:7px 15px;text-decoration:none;color:#16305c;border-bottom:1px solid #e2ecf9;transition:background .2s ease}
+.funding-row:last-child{border-bottom:0}
+.funding-row:hover,.funding-row:focus-visible{background:#e7f1ff;outline-offset:-2px}
+.funding-num{color:#4880c4;font-size:11px;font-weight:900}
+.funding-cat{color:#0951b8;font-size:10px;letter-spacing:.075em;font-weight:900}
+.funding-title{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px;font-weight:700}
+.funding-source{font-size:11px;color:#346dac;text-align:right;white-space:nowrap}
+.funding-disclaimer{font-size:11px;line-height:1.6;color:#536d91;margin:10px 0 0}
+.funding-disclaimer a{color:#0d57ca;font-weight:750}
+.agency-sponsor-ad{background:#e7f1ff;border-bottom:1px solid #bad2ed}
+.sponsor-ad-inner{min-height:78px;display:grid;grid-template-columns:130px minmax(0,1fr) auto;gap:21px;align-items:center;padding-top:15px;padding-bottom:15px}
+.sponsor-ad-label{font-size:9px;line-height:1.5;letter-spacing:.13em;font-weight:900;color:#4978a5}
+.sponsor-ad-inner div{font-size:12px;color:#375d92;line-height:1.6}
+.sponsor-ad-inner div strong{color:#133d81;font-size:13px;margin-right:5px}
+.sponsor-ad-inner>a{font-weight:800;color:#155ac1;font-size:12px;white-space:nowrap}
+@media(max-width:720px){
+.funding-top{align-items:flex-start;flex-direction:column;gap:8px}
+.funding-row{grid-template-columns:22px minmax(76px,120px) minmax(0,1fr);gap:6px;padding:10px}
+.funding-source{display:none}
+.funding-title{font-size:12px}
+.funding-cat{font-size:9px;line-height:1.4}
+.sponsor-ad-inner{grid-template-columns:1fr;gap:7px;padding-block:14px}
+.sponsor-ad-inner a{justify-self:start}
+}
