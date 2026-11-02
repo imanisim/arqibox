@@ -3,7 +3,7 @@ on:
   push:
     branches: [network]
     paths:
-      - ARQWELL_network_site_publish.zip
+      - site.tar.xz
 permissions:
   contents: write
 jobs:
@@ -16,8 +16,8 @@ jobs:
           persist-credentials: true
       - name: Extract website package
         run: |
-          test -f ARQWELL_network_site_publish.zip
-          unzip -oq ARQWELL_network_site_publish.zip -d .
+          test -f site.tar.xz
+          tar -xJf site.tar.xz -C .
           test -f index.html
           test -f apply/index.html
           test -f hire/index.html
